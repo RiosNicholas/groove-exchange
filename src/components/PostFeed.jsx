@@ -3,7 +3,7 @@ import PostCompact from "./PostCompact";
 
 const PostFeed = () => {
     return (
-        <main className="mx-5">
+        <main className="mx-5 lg:mx-32">
             <FeedFilter />
             <PostCompact />
             <PostCompact />

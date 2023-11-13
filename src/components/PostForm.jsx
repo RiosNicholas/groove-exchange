@@ -25,7 +25,7 @@ const PostForm = ({ onSubmit, operation, initialValues }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="flex flex-col mx-7 my-2 p-4 text-lg bg-neutral-200 text-black font-bold rounded">
+        <form onSubmit={handleSubmit} className="flex flex-col mx-7 my-2 p-4 text-lg bg-neutral-200 text-black font-bold rounded lg:mx-32">
             <label className="m-1">
                 Title: 
                 <input
