@@ -10,7 +10,7 @@ const NavBar = () => {
                 className="p-1 mx-5 my-1 w-1/3 rounded-md font-medium bg-neutral-800"
             />
             <nav className="p-1 mx-5 my-1">
-                <ul className="flex gap-5 text-base font-bold">
+                <ul className="flex items-center gap-5 text-base font-bold text-center">
                     <li className="hover:cursor-pointer hover:text-lime-300">
                         <Link to='/'>Home</Link>
                     </li>
