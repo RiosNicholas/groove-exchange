@@ -1,18 +1,13 @@
-import { Route } from 'react-router-dom';
 import FeedFilter from '../components/FeedFilter.jsx';
 import NavBar from '../components/NavBar.jsx';
 import PostFeed from '../components/PostFeed.jsx';
 
-const Layout = () => {
+const Home = () => {
   return (
-    <div>
-      <NavBar />
-        <Route path="/" exact>
-          <FeedFilter />
-          <PostFeed />
-        </Route>
-    </div>
+    <>
+      <PostFeed />
+    </>
   );
 };
 
-export default Layout;
+export default Home;
