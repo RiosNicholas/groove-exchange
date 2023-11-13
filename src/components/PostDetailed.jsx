@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const PostDetailed = ({ title, description, numUpvotes, timePosted, imgUrl, comments }) => {
-    const [numUpvotes, setNumUpvotes] = useState(numUpvotes);
+    const [upvotes, setUpvotes] = useState(numUpvotes);
 
     return (
         <div className="bg-neutral-100 mx-7 my-2 rounded">
