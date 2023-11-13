@@ -1,3 +1,5 @@
+import { Outlet, Link } from "react-router-dom";
+
 const NavBar = () => {
     return (
         <header className="flex justify-evenly items-center top-0 w-screen px-5 py-3 bg-neutral-600">
@@ -9,10 +11,15 @@ const NavBar = () => {
             />
             <nav className="p-1 mx-5 my-1">
                 <ul className="flex gap-5 text-base font-bold">
-                    <li className="hover:cursor-pointer hover:text-lime-300"><a>Home</a></li>
-                    <li className="hover:cursor-pointer hover:text-lime-300"><a>Create Post</a></li>
+                    <li className="hover:cursor-pointer hover:text-lime-300">
+                        <Link to='/'>Home</Link>
+                    </li>
+                    <li className="hover:cursor-pointer hover:text-lime-300">
+                        <Link to='/createPost'>Create Post</Link>
+                    </li>
                 </ul>
             </nav>
+            <Outlet />
         </header>
     );
 }

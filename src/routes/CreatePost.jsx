@@ -1,8 +1,8 @@
 import PostForm from "../components/PostForm";
-const createPost = () => {
+const CreatePost = () => {
     return (
         <PostForm />
     );
 }
 
-export default createPost;
+export default CreatePost;

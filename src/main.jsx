@@ -4,18 +4,20 @@ import App from './App.jsx'
 import './index.css'
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Layout from './routes/layout.jsx'
-import EditPost from './routes/editPost.jsx'
-import CreatePost from './routes/createPost.jsx'
+import NavBar from './components/NavBar.jsx';
+import EditPost from './routes/EditPost.jsx'
+import CreatePost from './routes/CreatePost.jsx'
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index={true} element={<App />} />
-        </Route>
-      </Routes>
+    <Routes>
+        <Route path='/' element={<App />}>
+        <Route index={true} path='/create-post' element={<CreatePost />} />
+        <Route index={true} path='/edit-post/:id' element={<EditPost />} />
+      </Route>
+    </Routes>
     </BrowserRouter>
   </React.StrictMode>,
 )
