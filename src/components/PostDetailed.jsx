@@ -1,5 +1,9 @@
+import { useState } from "react";
+
 const PostDetailed = ({ title, description, numUpvotes, timePosted, imgUrl, comments }) => {
-return (
+    const [numUpvotes, setNumUpvotes] = useState(numUpvotes);
+
+    return (
         <div className="bg-neutral-100 mx-7 my-2 rounded">
             <main className="bg-neutral-100 text-black rounded p-5 my-4">
                 <p className="text-neutral-700 text-sm font-light mb-1">Posted {timePosted} ago</p>

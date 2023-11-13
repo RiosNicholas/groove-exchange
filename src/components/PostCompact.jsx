@@ -1,4 +1,7 @@
+import { useState } from "react";
+
 const PostCompact = ({ title, numUpvotes, timePosted }) => {
+    const [numUpvotes, setNumUpvotes] = useState(numUpvotes);
     return (
         <div className="bg-neutral-100 text-black rounded p-5 m-2">
             <p className="text-neutral-700 text-sm font-light">Posted {timePosted} ago</p>
