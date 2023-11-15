@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { useRoutes, Link } from 'react-router-dom'
+import { Routes, Route, useRoutes, Link } from "react-router-dom";
 import { supabase } from '../client'
 import FeedFilter from "./FeedFilter";
 import PostCompactList from "./PostListCompact";
-PostCompactList
+import PostDetailed from "../routes/PostDetailed";
 
 const PostFeed = () => {
     const [posts, setPosts] = useState([]);
@@ -31,11 +31,21 @@ const PostFeed = () => {
           fetchPosts();
     }, []);
     
+    const handlePostClick = (index) => {
+        const selectedPost = posts[index];
+        setSelectedPost(selectedPost);
+    };
 
     return (
         <main className="mx-5 lg:mx-32">
             <FeedFilter />
-            <PostCompactList posts={posts} />
+            <Routes>
+                <Route
+                    path="/"
+                    element={<PostCompactList posts={posts} />}
+                />
+                <Route path="/post/:id" element={<PostDetailed />} />
+            </Routes>
         </main>
     );
 }

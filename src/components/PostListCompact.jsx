@@ -1,17 +1,18 @@
 import PostCompact from "./PostCompact";
 
-const PostCompactList = ({ posts }) => {
+const PostCompactList = ({ posts, onPostClick }) => {
     return (
-        <div className="PostCompactList">
+        <div>
             {posts.map((post, index) => (
-                <PostCompact
-                    key={index}
-                    title={post.title}
-                    numUpvotes={post.numUpvotes}
-                    timePosted={post.timePosted}
-                />
+                <Link key={index} to={`/post/${post.id}`}>
+                    <PostCompact
+                        title={post.title}
+                        numUpvotes={post.numUpvotes}
+                        timePosted={post.timePosted}
+                    />
+                </Link>
             ))}
-        </div>
+       </div>
     );
 };
 
