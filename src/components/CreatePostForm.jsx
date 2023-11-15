@@ -2,61 +2,52 @@ import { useState, useEffect } from "react";
 import { supabase } from "../client";
 
 const CreatePostForm = ({ onSubmit, initialValues }) => {
-    const [title, setTitle] = useState('');
-    const [post, setPost] = useState({title: "", description: "", image: "", upvotes: 0})
-    const [description, setDescription] = useState('');
-    const [imageUrl, setImageUrl] = useState('');
-
-    useEffect(() => {
-        // Used for editing existing post
-        if (initialValues) {
-            setTitle(initialValues.title || '');
-            setDescription(initialValues.description || '');
-            setImageUrl(initialValues.imageUrl || '');
-        }
-    }, [initialValues]);
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const formData = {
-            title,
-            description,
-            imageUrl,
-        };
-        onSubmit(formData);
-    };
-
+    const [post, setPost] = useState({
+        title: '',
+        imageUrl: '',
+        description: '', 
+        likes: 0,
+        comments: []
+    })
 
     const createPost = async (event) => {
         event.preventDefault();
         const { error } = await supabase
-            .from('Posts')
+            .from("Posts")
             .insert({
-                title: card.title, 
-                description: card.description, 
-                image: card.image, 
-                upvotes: card.upvotes, 
-                username: userName, 
-                creatorID: userID
+                title: post.title,
+                image: post.image,
+                description: post.description,
+                likes: post.likes,
+                comments: post.comments,
             })
-            .select()
-
+            .select();
             if (error) {
                 console.log(error);
             }
+            window.location = "/";
+        };
 
-        window.location = "/create";
-    }
+
+        const handleChange = (event) => {
+            const { name, value } = event.target;
+            setPost((prev) => {
+                return {
+                    ...prev,
+                    [name]: value,
+                };
+            });
+    }; 
 
     return (
-        <form onSubmit={handleSubmit} className="flex flex-col mx-7 my-2 p-4 text-lg bg-neutral-200 text-black font-bold rounded lg:mx-32">
+        <form className="flex flex-col mx-7 my-2 p-4 text-lg bg-neutral-200 text-black font-bold rounded lg:mx-32">
             <label className="m-1">
                 Title: 
                 <input
                     className="bg-white font-normal rounded p-1 mx-1 w-full text-base"
                     type="text"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
+                    value={post.title}
+                    onChange={handleChange}
                     required
                 />
             </label>
@@ -65,8 +56,8 @@ const CreatePostForm = ({ onSubmit, initialValues }) => {
                 Description:
                 <textarea
                     className="bg-white font-normal rounded p-1 mx-1 w-full text-base"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
+                    value={post.description}
+                    onChange={handleChange}
                     required
                 />
             </label>
@@ -76,8 +67,8 @@ const CreatePostForm = ({ onSubmit, initialValues }) => {
                 <input
                     className="bg-white w-full font-normal rounded p-1 mx-1 text-base"
                     type="text"
-                    value={imageUrl}
-                    onChange={(e) => setImageUrl(e.target.value)}
+                    value={post.imageUrl}
+                    onChange={handleChange}
                 />
             </label>
 
