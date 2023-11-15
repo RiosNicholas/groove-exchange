@@ -8,7 +8,7 @@ import Home from './routes/Home.jsx';
 import NavBar from './components/NavBar.jsx';
 import EditPost from './routes/EditPost.jsx'
 import CreatePost from './routes/CreatePost.jsx'
-import PostDetailed from './routes/PostDetailed.jsx';
+import Post from './routes/Post.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -18,7 +18,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route index={true} path='/' element={<Home />} />
           <Route index={true} path='/create-post' element={<CreatePost />} />
           <Route index={true} path='/edit-post/:id' element={<EditPost />} />
-          <Route index={true} path='/post/:id' element={<PostDetailed />} />
+          <Route index={true} path='/post/:id' element={<Post />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
