@@ -11,7 +11,6 @@ const PostDetailed = () => {
     const [isEditing, setIsEditing] = useState(false);
     const navigate = useNavigate();
 
-
     useEffect(() => {
         const fetchedData = async () => {
             const { data, error } = await supabase

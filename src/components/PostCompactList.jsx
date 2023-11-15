@@ -5,9 +5,10 @@ const PostCompactList = ({ posts }) => {
         <div>
             {posts.map((post) => (
                 <PostCompact
+                    key={post.id}
                     title={post.title}
-                    numUpvotes={post.numUpvotes}
-                    timePosted={post.timePosted}
+                    numUpvotes={post.num_upvotes || 0}
+                    timePosted={post.created_at || '1 minute'}
                     id={post.id}
                 />
             ))}

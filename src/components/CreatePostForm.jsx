@@ -12,7 +12,6 @@ const CreatePostForm = ({ onSubmit, initialValues }) => {
 
     const createPost = async (event) => {
         event.preventDefault();
-        console.log("Creating post...", post); 
         const { error } = await supabase
             .from("Posts")
             .insert({
