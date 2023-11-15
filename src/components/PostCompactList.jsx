@@ -1,6 +1,6 @@
 import PostCompact from "./PostCompact";
 
-const PostCompactList = ({ posts, onPostClick }) => {
+const PostCompactList = ({ posts }) => {
     return (
         <div>
             {posts.map((post, index) => (
