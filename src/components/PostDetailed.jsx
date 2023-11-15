@@ -7,8 +7,8 @@ const PostDetailed = ({ title, description, numUpvotes, timePosted, imgUrl, comm
         <div className="bg-neutral-100 mx-7 my-2 rounded">
             <main className="bg-neutral-100 text-black rounded p-5 my-4">
                 <p className="text-neutral-700 text-sm font-light mb-1">Posted {timePosted} ago</p>
-                <h2 className="font-extrabold text-2xl">{title}Title</h2>
-                <p className="text-lg">{description}dadaada</p>
+                <h2 className="font-extrabold text-2xl">{title}itle</h2>
+                <p className="text-lg">{description}description</p>
                 <img 
                     src={imgUrl} 
                     className="max-w-lg mb-1"

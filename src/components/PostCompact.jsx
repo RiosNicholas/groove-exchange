@@ -23,7 +23,7 @@ const PostCompact = ({ title, numUpvotes, timePosted }) => {
             </aside>
             <div>
                 <p className="text-neutral-700 text-sm font-light">Posted {timePosted} ago</p>
-                <h2 className="font-extrabold text-xl mb-1">dd{title}</h2>
+                <h2 className="font-extrabold text-xl mb-1">{title}</h2>
                 <p className="text-neutral-700 font-normal text-base">{upvotes} upvotes</p>
             </div>
         </div>

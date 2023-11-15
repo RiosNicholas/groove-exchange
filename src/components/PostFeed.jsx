@@ -34,9 +34,15 @@ const PostFeed = () => {
     return (
         <main className="mx-5 lg:mx-32">
             <FeedFilter />
-            <PostCompact />
-            <PostCompact />
-            <PostCompact />
+            <PostCompact 
+                title={'Thoughts on the new Earl Sweatshirt album?'} 
+            />
+            <PostCompact 
+                title={'Hidden Gem Alert: My favorite underground band'} 
+            />
+            <PostCompact 
+                title={'Artist appreciation thread: Elliott Smith'} 
+            />
         </main>
     );
 }
