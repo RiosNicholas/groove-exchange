@@ -34,10 +34,7 @@ const EditPostForm = ({ onSubmit, initialValues }) => {
             .insert({
                 title: card.title, 
                 description: card.description, 
-                image: card.image, 
-                upvotes: card.upvotes, 
-                username: userName, 
-                creatorID: userID
+                image_url: card.image, 
             })
             .select()
 

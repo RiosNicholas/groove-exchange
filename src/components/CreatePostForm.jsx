@@ -12,16 +12,18 @@ const CreatePostForm = ({ onSubmit, initialValues }) => {
 
     const createPost = async (event) => {
         event.preventDefault();
+        console.log("Creating post...", post); 
         const { error } = await supabase
             .from("Posts")
             .insert({
                 title: post.title,
-                image: post.image,
+                image_url: post.imageUrl,
                 description: post.description,
                 num_upvotes: post.num_upvotes,
                 comments: post.comments,
             })
             .select();
+
             if (error) {
                 console.log(error);
             }
@@ -46,6 +48,7 @@ const CreatePostForm = ({ onSubmit, initialValues }) => {
                 <input
                     className="bg-white font-normal rounded p-1 mx-1 w-full text-base"
                     type="text"
+                    name="title"
                     value={post.title}
                     onChange={handleChange}
                     required
@@ -56,6 +59,7 @@ const CreatePostForm = ({ onSubmit, initialValues }) => {
                 Description:
                 <textarea
                     className="bg-white font-normal rounded p-1 mx-1 w-full text-base"
+                    name="description"
                     value={post.description}
                     onChange={handleChange}
                     required
@@ -67,6 +71,7 @@ const CreatePostForm = ({ onSubmit, initialValues }) => {
                 <input
                     className="bg-white w-full font-normal rounded p-1 mx-1 text-base"
                     type="text"
+                    name="imageUrl"
                     value={post.imageUrl}
                     onChange={handleChange}
                 />
