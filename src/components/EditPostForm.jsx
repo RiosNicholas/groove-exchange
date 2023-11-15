@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
+import { supabase } from "../client";
 
-const PostForm = ({ onSubmit, operation, initialValues }) => {
+const EditPostForm = ({ onSubmit, initialValues }) => {
     const [title, setTitle] = useState('');
+    const [post, setPost] = useState({title: "", description: "", image: "", upvotes: 0})
     const [description, setDescription] = useState('');
     const [imageUrl, setImageUrl] = useState('');
 
@@ -23,6 +25,28 @@ const PostForm = ({ onSubmit, operation, initialValues }) => {
         };
         onSubmit(formData);
     };
+
+
+    const createPost = async (event) => {
+        event.preventDefault();
+        const { error } = await supabase
+            .from('Posts')
+            .insert({
+                title: card.title, 
+                description: card.description, 
+                image: card.image, 
+                upvotes: card.upvotes, 
+                username: userName, 
+                creatorID: userID
+            })
+            .select()
+
+            if (error) {
+                console.log(error);
+            }
+
+        window.location = "/create";
+    }
 
     return (
         <form onSubmit={handleSubmit} className="flex flex-col mx-7 my-2 p-4 text-lg bg-neutral-200 text-black font-bold rounded lg:mx-32">
@@ -57,11 +81,11 @@ const PostForm = ({ onSubmit, operation, initialValues }) => {
                 />
             </label>
 
-            <button type="submit" className="mx-5 mt-5 mb-2 rounded bg-lime-600 text-white font-bold uppercase">
-                {operation === 'update' ? 'Update Post' : 'Create Post'}
+            <button type="submit" onClick={createPost} className="mx-5 mt-5 mb-2 rounded bg-lime-600 text-white font-bold uppercase">
+                Edit Post
             </button>
         </form>
     );
 };
 
-export default PostForm;
+export default EditPostForm;

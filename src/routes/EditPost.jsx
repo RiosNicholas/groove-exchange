@@ -1,7 +1,7 @@
-import PostForm from "../components/PostForm";
+import EditPostForm from "../components/EditPostForm";
 const EditPost = () => {
     return (
-        <PostForm />
+        <EditPostForm />
     );
 }
 
