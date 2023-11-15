@@ -1,3 +1,4 @@
+import { formatDistanceToNow } from 'date-fns';
 import PostCompact from "./PostCompact";
 
 const PostCompactList = ({ posts }) => {
@@ -8,7 +9,7 @@ const PostCompactList = ({ posts }) => {
                     key={post.id}
                     title={post.title}
                     numUpvotes={post.num_upvotes || 0}
-                    timePosted={post.created_at || '1 minute'}
+                    timePosted={formatDistanceToNow(new Date(post.created_at), { addSuffix: true }) || 'less than 1 minute ago'}
                     id={post.id}
                 />
             ))}

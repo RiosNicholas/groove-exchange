@@ -107,7 +107,7 @@ const PostDetailed = () => {
                 </button>
             </aside>
             <main className="bg-neutral-100 text-black rounded py-5 px-1 my-4">
-                <p className="text-neutral-700 text-sm font-light mb-1">Posted {timePosted} ago</p>
+                <p className="text-neutral-700 text-sm font-light mb-1">Posted {timePosted}</p>
                 <h2 className="font-extrabold text-2xl">{title}Title</h2>
                 <p className="text-lg">{description}description</p>
                 <img 
