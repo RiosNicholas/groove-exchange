@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
-const PostCompact = ({ title, numUpvotes, timePosted }) => {
+const PostCompact = ({ title, numUpvotes, timePosted, id }) => {
     const [upvotes, setUpvotes] = useState(0);
 
     const handleUpvote = () => {
@@ -21,11 +22,11 @@ const PostCompact = ({ title, numUpvotes, timePosted }) => {
                     <span role="img" aria-label="downvote">👎</span>
                 </button>
             </aside>
-            <div>
+            <Link to={`/post/${id}`}>
                 <p className="text-neutral-700 text-sm font-light">Posted {timePosted} ago</p>
                 <h2 className="font-extrabold text-xl mb-1">{title}</h2>
                 <p className="text-neutral-700 font-normal text-base">{upvotes} upvotes</p>
-            </div>
+            </Link>
         </div>
     );
 }
