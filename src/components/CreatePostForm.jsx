@@ -6,7 +6,7 @@ const CreatePostForm = ({ onSubmit, initialValues }) => {
         title: '',
         imageUrl: '',
         description: '', 
-        likes: 0,
+        num_upvotes: 0,
         comments: []
     })
 
@@ -18,7 +18,7 @@ const CreatePostForm = ({ onSubmit, initialValues }) => {
                 title: post.title,
                 image: post.image,
                 description: post.description,
-                likes: post.likes,
+                num_upvotes: post.num_upvotes,
                 comments: post.comments,
             })
             .select();
