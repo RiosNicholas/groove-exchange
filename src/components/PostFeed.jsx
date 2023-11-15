@@ -3,7 +3,7 @@ import { Routes, Route, useRoutes, Link } from "react-router-dom";
 import { supabase } from '../client'
 import FeedFilter from "./FeedFilter";
 import PostCompactList from "./PostListCompact";
-import PostDetailed from "../routes/PostDetailed";
+import PostDetailed from "./PostDetailed";
 
 const PostFeed = () => {
     const [posts, setPosts] = useState([]);
@@ -31,11 +31,6 @@ const PostFeed = () => {
           fetchPosts();
     }, []);
     
-    const handlePostClick = (index) => {
-        const selectedPost = posts[index];
-        setSelectedPost(selectedPost);
-    };
-
     return (
         <main className="mx-5 lg:mx-32">
             <FeedFilter />
