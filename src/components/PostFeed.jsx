@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { useRoutes, Link } from 'react-router-dom'
 import { supabase } from '../client'
 import FeedFilter from "./FeedFilter";
-import PostCompact from "./PostCompact";
+import PostCompactList from "./PostListCompact";
+PostCompactList
 
 const PostFeed = () => {
     const [posts, setPosts] = useState([]);
@@ -34,15 +35,7 @@ const PostFeed = () => {
     return (
         <main className="mx-5 lg:mx-32">
             <FeedFilter />
-            <PostCompact 
-                title={'Thoughts on the new Earl Sweatshirt album?'} 
-            />
-            <PostCompact 
-                title={'Hidden Gem Alert: My favorite underground band'} 
-            />
-            <PostCompact 
-                title={'Artist appreciation thread: Elliott Smith'} 
-            />
+            <PostCompactList posts={posts} />
         </main>
     );
 }
