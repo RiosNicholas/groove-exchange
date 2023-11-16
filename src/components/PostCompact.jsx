@@ -35,6 +35,10 @@ const PostCompact = ({ title, numUpvotes, timePosted, id }) => {
         }
     };
 
+    const handleLinkClick = (e) => {
+        e.preventDefault();
+    };
+
     return (
         <div className="bg-neutral-100 text-black rounded flex items-center p-5 m-2">
             <aside className="flex flex-col mr-4">
