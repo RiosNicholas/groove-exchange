@@ -1,6 +1,6 @@
 import { supabase } from "../client";
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { formatDistanceToNow } from 'date-fns';
 
 const PostDetailed = ({ numUpvotes, timePosted }) => {
@@ -39,16 +39,6 @@ const PostDetailed = ({ numUpvotes, timePosted }) => {
         };
         fetchedData();
     }, [index, navigate]);
-    
-    const handleDelete = async () => {
-        const { data, error } = await supabase
-            .from("Posts")
-            .delete()
-            .eq("id", index)
-            .select();
-
-        navigate("/");
-    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -108,7 +98,11 @@ const PostDetailed = ({ numUpvotes, timePosted }) => {
                 </button>
             </aside>
             <main className="bg-neutral-100 text-black rounded py-5 px-1 my-4">
-                <p className="text-neutral-700 text-sm font-light mb-1">Posted {createdAt}</p>
+                <p className="text-neutral-700 text-sm font-light mb-1">
+                    Posted {createdAt} 
+                    <span> | <Link to={`/post/edit/${index}`} className="hover:underline">Edit</Link>
+                    </span>
+                </p>
                 <h2 className="font-extrabold text-2xl">{title}</h2>
                 <p className="text-lg">{description}</p>
                 <img 
@@ -126,7 +120,7 @@ const PostDetailed = ({ numUpvotes, timePosted }) => {
                         className="m-2 bg-white text-black p-1 rounded text-sm w-full overflow-y-auto max-h-32"
                         value={createdComment}
                         onChange={(e) => setCreatedComment(e.target.value)}
-                        />
+                    />
                     <div className="flex">
                         <button type="submit" className="m-2 bg-lime-600 text-white font-bold">
                             Comment

@@ -16,7 +16,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Routes>
         <Route index={true} path='/' element={<Home />} />
         <Route index={true} path='/create-post' element={<CreatePost />} />
-        <Route index={true} path='/edit-post/:index' element={<EditPost />} />
+        <Route index={true} path='/post/edit/:index' element={<EditPost />} />
         <Route index={true} path='/post/:index' element={<Post />} />
     </Routes>
   </BrowserRouter>

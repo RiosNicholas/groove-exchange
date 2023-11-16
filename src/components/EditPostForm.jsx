@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { supabase } from "../client";
+import { Link, useNavigate } from "react-router-dom";
 
 const EditPostForm = ({ onSubmit, initialValues }) => {
     const [title, setTitle] = useState('');
     const [post, setPost] = useState({title: "", description: "", image: "", upvotes: 0})
     const [description, setDescription] = useState('');
     const [imageUrl, setImageUrl] = useState('');
+    const navigate = useNavigate();
 
     useEffect(() => {
         // Used for editing existing post
@@ -44,24 +46,42 @@ const EditPostForm = ({ onSubmit, initialValues }) => {
 
         window.location = "/create";
     }
-    // const handleEdits = async (e) => {
-    //     e.preventDefault();
-    //     const { data, error } = await supabase
-    //         .from("Posts")
-    //         .update({ title, imageUrl, description })
-    //         .eq("id", index)
-    //         .select();
+    const handleEdits = async (e) => {
+        e.preventDefault();
+        const { data, error } = await supabase
+            .from("Posts")
+            .update({ title, imageUrl, description })
+            .eq("id", index)
+            .select();
 
-    //     console.log(index, title);
-    // };
+        console.log(index, title);
+    };
 
-    // const toggleEditMode = async (e) => {
-    //     setIsEditing(!isEditing);
-    // };
+    const toggleEditMode = async (e) => {
+        setIsEditing(!isEditing);
+    };
+
+    const handleDelete = async () => {
+        const { data, error } = await supabase
+            .from("Posts")
+            .delete()
+            .eq("id", index)
+            .select();
+
+        navigate("/");
+    };
+
 
     return (
-        <form onSubmit={handleSubmit} className="flex flex-col mx-7 my-2 p-4 text-lg bg-neutral-200 text-black font-bold rounded lg:mx-32">
-            <label className="m-1">
+        <form onSubmit={handleSubmit} className="flex flex-col mx-7 my-2 px-4 pt-6 pb-3 text-lg bg-neutral-200 text-black font-bold rounded lg:mx-32">
+            <Link 
+                to="#"
+                onClick={() => navigate(-1)}
+                className="text-sm text-neutral-700 font-light mx-1 mb-2 w-24 hover:underline hover:text-neutral-600"
+            >
+                Back to post
+            </Link>
+            <label className="m-1 text-xl">
                 Title: 
                 <input
                     className="bg-white font-normal rounded p-1 mx-1 w-full text-base"
@@ -72,7 +92,7 @@ const EditPostForm = ({ onSubmit, initialValues }) => {
                 />
             </label>
 
-            <label className="m-1">
+            <label className="m-1 text-xl">
                 Description:
                 <textarea
                     className="bg-white font-normal rounded p-1 mx-1 w-full text-base"
@@ -82,7 +102,7 @@ const EditPostForm = ({ onSubmit, initialValues }) => {
                 />
             </label>
 
-            <label className="m-1 italic font-normal text-neutral-800">
+            <label className="m-1 italic text-xl font-normal text-neutral-800">
                 <i>Image URL (optional):</i>
                 <input
                     className="bg-white w-full font-normal rounded p-1 mx-1 text-base"
@@ -92,12 +112,14 @@ const EditPostForm = ({ onSubmit, initialValues }) => {
                 />
             </label>
 
-            <button type="submit" onClick={createPost} className="mx-5 mt-5 mb-2 rounded bg-lime-600 text-white font-bold uppercase">
-                Edit Post
-            </button>
-            {/* <button onClick={toggleEditMode} className="m-2 bg-blue-600 text-white font-bold">
-                {isEditing ? "Cancel" : "Edit"}
-            </button> */}
+            <div className="flex p-1 mt-5 w-full justify-center items-center">
+                <button type="submit" onClick={createPost} className="rounded flex-grow m-2 bg-lime-600 text-white font-bold uppercase">
+                    Edit Post
+                </button>
+                <button type="submit" onClick={createPost} className="rounded flex-grow m-2 bg-red-700 text-neutral-100 font-bold uppercase">
+                    Delete Post
+                </button>
+            </div>
         </form>
     );
 };
