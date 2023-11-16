@@ -118,9 +118,9 @@ const PostDetailed = ({ numUpvotes, timePosted }) => {
                 <p className="text-neutral-700 font-normal text-base">{upvotes} upvotes</p>
             </main>
             </div>
-            <div className="flex flex-col bg-neutral-500 px-8 p-2">
-                <form onSubmit={handleSubmit}>
-                    <h2 className="font-bold text-lg">Comments</h2>
+            <div className="flex flex-col bg-neutral-500 px-8 pt-3 pb-6">
+                <h2 className="font-bold text-lg">Comments</h2>
+                <form className='flex' onSubmit={handleSubmit}>
                     <textarea 
                         placeholder="Leave a comment..."
                         className="m-2 bg-white text-black p-1 rounded text-sm w-full overflow-y-auto max-h-32"
