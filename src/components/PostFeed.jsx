@@ -7,12 +7,8 @@ import PostDetailed from "./PostDetailed";
 
 const PostFeed = () => {
     const [posts, setPosts] = useState([]);
-    const [token, setToken] = useState(false);
     const [orderBy, setOrderBy] = useState('newest');
   
-    if(token){
-        sessionStorage.setItem('token',JSON.stringify(token))
-    }
     
     useEffect(() => {
         const fetchPosts = async () => {
@@ -31,11 +27,6 @@ const PostFeed = () => {
                 console.error('Error in fetchPosts:', error);
             }
         }; 
-      
-        if(sessionStorage.getItem('token')){
-            let data = JSON.parse(sessionStorage.getItem('token'));
-            setToken(data);
-        };
 
         console.log(posts)
         fetchPosts();
