@@ -1,6 +1,7 @@
 import { supabase } from "../client";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { formatDistanceToNow } from 'date-fns';
 
 const PostDetailed = ({ numUpvotes, timePosted }) => {
     const { index } = useParams();
@@ -33,6 +34,7 @@ const PostDetailed = ({ numUpvotes, timePosted }) => {
                 setComments(data.comments);
                 setUpvotes(data.num_upvotes);
                 setCreatedAt(data.created_at); 
+                setCreatedAt(formatDistanceToNow(new Date(data.created_at), { addSuffix: true }))
             }
         };
         fetchedData();
