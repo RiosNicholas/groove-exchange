@@ -44,6 +44,20 @@ const EditPostForm = ({ onSubmit, initialValues }) => {
 
         window.location = "/create";
     }
+    // const handleEdits = async (e) => {
+    //     e.preventDefault();
+    //     const { data, error } = await supabase
+    //         .from("Posts")
+    //         .update({ title, imageUrl, description })
+    //         .eq("id", index)
+    //         .select();
+
+    //     console.log(index, title);
+    // };
+
+    // const toggleEditMode = async (e) => {
+    //     setIsEditing(!isEditing);
+    // };
 
     return (
         <form onSubmit={handleSubmit} className="flex flex-col mx-7 my-2 p-4 text-lg bg-neutral-200 text-black font-bold rounded lg:mx-32">
@@ -81,6 +95,9 @@ const EditPostForm = ({ onSubmit, initialValues }) => {
             <button type="submit" onClick={createPost} className="mx-5 mt-5 mb-2 rounded bg-lime-600 text-white font-bold uppercase">
                 Edit Post
             </button>
+            {/* <button onClick={toggleEditMode} className="m-2 bg-blue-600 text-white font-bold">
+                {isEditing ? "Cancel" : "Edit"}
+            </button> */}
         </form>
     );
 };
