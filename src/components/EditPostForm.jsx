@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { supabase } from "../client";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
-const EditPostForm = ({ initialValues }) => {
+const EditPostForm = () => {
     const { index } = useParams();
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -51,34 +51,21 @@ const EditPostForm = ({ initialValues }) => {
         onSubmit(formData);
     };
 
-
-    const createPost = async (event) => {
-        event.preventDefault();
-        const { error } = await supabase
-            .from('Posts')
-            .insert({
-                title: card.title, 
-                description: card.description, 
-                image_url: card.image, 
-            })
-            .select()
-
-            if (error) {
-                console.log(error);
-            }
-
-        window.location = "/create";
-    }
     const handleEdits = async (e) => {
         e.preventDefault();
         const { data, error } = await supabase
             .from("Posts")
-            .update({ title, imageUrl, description })
-            .eq("id", index)
-            .select();
-
-        navigate(-1);
+            .update({ title, image_url: imageUrl, description })
+            .eq("id", index);
+    
+        if (error) {
+            console.error(error);
+        } else {
+            console.log("Update successful:", data);
+            navigate(-1);
+        }
     };
+
 
     const handleDelete = async () => {
         const { data, error } = await supabase
