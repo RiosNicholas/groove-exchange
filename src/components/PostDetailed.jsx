@@ -89,11 +89,11 @@ const PostDetailed = ({ numUpvotes, timePosted }) => {
     return (
         <div className="bg-neutral-100 mx-7 my-2 rounded">
             <div className="flex items-center ">
-            <aside className="flex flex-col  text-2xl">
-                <button onClick={handleUpvote} className="hover:bg-neutral-200 bg-neutral-100">
+            <aside className="flex flex-col text-3xl">
+                <button onClick={handleUpvote} className="my-1 hover:bg-neutral-200 bg-neutral-100">
                     <span role="img" aria-label="upvote">👍</span>
                 </button>
-                <button onClick={handleDownvote} className="hover:bg-neutral-200 bg-neutral-100">
+                <button onClick={handleDownvote} className="my-1 hover:bg-neutral-200 bg-neutral-100">
                     <span role="img" aria-label="downvote">👎</span>
                 </button>
             </aside>
@@ -103,17 +103,17 @@ const PostDetailed = ({ numUpvotes, timePosted }) => {
                     <span> | <Link to={`/post/edit/${index}`} className="hover:underline">Edit</Link>
                     </span>
                 </p>
-                <h2 className="font-extrabold text-2xl">{title}</h2>
+                <h2 className="font-extrabold text-3xl">{title}</h2>
                 <p className="text-lg">{description}</p>
                 <img 
                     src={imageUrl} 
-                    className="max-w-lg mb-1"
+                    className="max-w-sm max-h-64 my-4"
                 />
                 <p className="text-neutral-700 font-normal text-base">{upvotes} upvotes</p>
             </main>
             </div>
             <div className="flex flex-col bg-neutral-500 px-8 pt-3 pb-6">
-                <h2 className="font-bold text-lg">Comments</h2>
+                <h2 className="font-bold text-xl">Comments</h2>
                 <form className='flex' onSubmit={handleSubmit}>
                     <textarea 
                         placeholder="Leave a comment..."
