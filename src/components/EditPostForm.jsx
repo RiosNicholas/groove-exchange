@@ -77,7 +77,7 @@ const EditPostForm = ({ onSubmit, initialValues }) => {
             <Link 
                 to="#"
                 onClick={() => navigate(-1)}
-                className="text-sm text-neutral-700 font-light mx-1 mb-2 w-24 hover:underline hover:text-neutral-600"
+                className="text-sm text-neutral-700 font-light mx-1 mb-2 w-24 hover:underline hover:text-neutral-800"
             >
                 Back to post
             </Link>
@@ -112,11 +112,11 @@ const EditPostForm = ({ onSubmit, initialValues }) => {
                 />
             </label>
 
-            <div className="flex p-1 mt-5 w-full justify-center items-center">
-                <button type="submit" onClick={createPost} className="rounded flex-grow m-2 bg-lime-600 text-white font-bold uppercase">
-                    Edit Post
+            <div className="flex p-1 mt-5 w-full justify-center items-center text-center transition">
+                <button type="submit" onClick={createPost} className="rounded flex-grow m-2 bg-lime-600 text-white font-bold uppercase hover:bg-lime-700">
+                    Confirm Changes
                 </button>
-                <button type="submit" onClick={createPost} className="rounded flex-grow m-2 bg-red-700 text-neutral-100 font-bold uppercase">
+                <button type="submit" onClick={createPost} className="rounded flex-grow m-2 bg-red-700 text-neutral-100 font-bold uppercase hover:bg-red-800">
                     Delete Post
                 </button>
             </div>
