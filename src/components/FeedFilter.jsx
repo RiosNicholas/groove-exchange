@@ -1,15 +1,33 @@
+import { useState } from "react";
+
 const FeedFilter = () => {
-    return(
+    const [orderBy, setOrderBy] = useState('newest');
+
+    const buttonClass = (value) => {
+        return `font-bold p-1 m-1 hover:border-neutral-400 ${orderBy === value ? 'bg-lime-700' : 'bg-lime-600'}`;
+    };
+
+    return (
         <div className="m-2">
             <p className="text-white text-sm m-1">
-                Order by: 
+                Order by:
                 <span>
-                    <button className="bg-lime-700 font-bold p-1 m-1 hover:border-neutral-400">Newest</button>
-                    <button className="bg-lime-600 font-bold p-1 m-1 hover:border-neutral-400">Most Popular</button>
+                    <button
+                        className={buttonClass('newest')}
+                        onClick={() => setOrderBy('newest')}
+                    >
+                        Newest
+                    </button>
+                    <button
+                        className={buttonClass('mostPopular')}
+                        onClick={() => setOrderBy('mostPopular')}
+                    >
+                        Most Popular
+                    </button>
                 </span>
             </p>
         </div>
     );
-}
+};
 
 export default FeedFilter;
