@@ -50,19 +50,29 @@ const PostDetailed = ({ numUpvotes, timePosted }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const trimmedComment = createdComment.trim();
+
+        // Skip if the comment is empty
+        if (trimmedComment === '') {
+            return; 
+        }
+    
+        // Handling cases with null comments
+        const updatedComments = (comments || []).concat(trimmedComment);
+    
         const { data, error } = await supabase
             .from("Posts")
-            .update({ comments: [createdComment, ...comments] })
+            .update({ comments: updatedComments })
             .eq("id", index);
-
+    
         if (error) {
-            console.log(error);
+            console.error(error);
         }
-        if (data) {
-            console.log(data);
-        }
-        setComments([createdComment, ...comments]);
+    
+        setComments(updatedComments);
+        setCreatedComment(""); // Clears the input after submitting
     };
+
 
     const handleUpvote = async (e) => {
         e.preventDefault();
@@ -122,7 +132,7 @@ const PostDetailed = ({ numUpvotes, timePosted }) => {
                     </div>
                 </form>
                 <ul className="list-disc list-inside">
-                    {Array.isArray(comments) && comments.map((comment, i) => (
+                    {Array.isArray(comments) && comments.reverse().map((comment, i) => (
                         <li key={i}>{comment}</li>
                     ))}
                 </ul>
