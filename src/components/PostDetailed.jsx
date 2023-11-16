@@ -132,7 +132,7 @@ const PostDetailed = ({ numUpvotes, timePosted }) => {
                     </div>
                 </form>
                 <ul className="list-disc list-inside">
-                    {Array.isArray(comments) && comments.reverse().map((comment, i) => (
+                    {Array.isArray(comments) && comments.map((comment, i) => (
                         <li key={i}>{comment}</li>
                     ))}
                 </ul>
