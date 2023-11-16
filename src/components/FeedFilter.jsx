@@ -1,7 +1,5 @@
-import { useState } from "react";
 
-const FeedFilter = () => {
-    const [orderBy, setOrderBy] = useState('newest');
+const FeedFilter = ({ orderBy, setOrderBy }) => {
 
     const buttonClass = (value) => {
         return `font-bold p-1 m-1 hover:border-neutral-400 ${orderBy === value ? 'bg-lime-700' : 'bg-lime-600'}`;

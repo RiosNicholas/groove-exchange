@@ -8,6 +8,7 @@ import PostDetailed from "./PostDetailed";
 const PostFeed = () => {
     const [posts, setPosts] = useState([]);
     const [token, setToken] = useState(false);
+    const [orderBy, setOrderBy] = useState('newest');
   
     if(token){
         sessionStorage.setItem('token',JSON.stringify(token))
@@ -19,7 +20,7 @@ const PostFeed = () => {
                 const { data, error } = await supabase
                     .from('Posts')
                     .select()
-                    .order('created_at', { ascending: false });
+                    .order(orderBy === 'newest' ? 'created_at' : 'num_upvotes', { ascending: orderBy === 'newest' ? false : false });
             
                 if (error) {
                     console.error('Error fetching data:', error);
@@ -38,11 +39,14 @@ const PostFeed = () => {
 
         console.log(posts)
         fetchPosts();
-    }, []);
+    }, [orderBy]);
     
     return (
         <main className="mx-5 lg:mx-32">
-            <FeedFilter />
+            <FeedFilter 
+                orderBy={orderBy}
+                setOrderBy={setOrderBy}
+            />
             <Routes>
                 <Route
                     path="/"

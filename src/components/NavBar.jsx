@@ -7,7 +7,7 @@ const NavBar = () => {
             <input
                 type="text" 
                 placeholder="Search" 
-                className="p-1 mx-5 my-1 w-1/3 rounded-md font-medium bg-neutral-800"
+                className="px-2 py-1 mx-5 my-1 w-1/3 rounded-md font-medium bg-neutral-800"
             />
             <nav className="p-1 mx-5 my-1">
                 <ul className="flex items-center gap-5 text-base font-bold text-center">
