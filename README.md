@@ -26,18 +26,12 @@ The following **required** functionality is completed:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='Screen_Recording_2023-11-15_at_11_54_55_PM.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-<!-- Replace this with whatever GIF tool you used! -->
-GIF created with ...  
-<!-- Recommended tools:
-[Kap](https://getkap.co/) for macOS
-[ScreenToGif](https://www.screentogif.com/) for Windows
-[peek](https://github.com/phw/peek) for Linux. -->
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+I'm currently figuring out how to implement a functional search bar to filter displayed posts. However, I'm stumped given my project's current file structure. 
 
 ## License
 
