@@ -1,22 +1,45 @@
 import { useState, useEffect } from "react";
 import { supabase } from "../client";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
-const EditPostForm = ({ onSubmit, initialValues }) => {
+const EditPostForm = ({ initialValues }) => {
+    const { index } = useParams();
     const [title, setTitle] = useState('');
-    const [post, setPost] = useState({title: "", description: "", image: "", upvotes: 0})
     const [description, setDescription] = useState('');
     const [imageUrl, setImageUrl] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Used for editing existing post
-        if (initialValues) {
-            setTitle(initialValues.title || '');
-            setDescription(initialValues.description || '');
-            setImageUrl(initialValues.imageUrl || '');
+        // Fetches existing data on post being edited 
+        const fetchPostData = async () => {
+            try {
+                const { data, error } = await supabase
+                    .from("Posts")
+                    .select()
+                    .eq("id", index)
+                    .single();
+
+                if (error) {
+                    console.error(error);
+                    navigate("/", { replace: true });
+                    return;
+                }
+
+                if (data) {
+                    setTitle(data.title || '');
+                    setDescription(data.description || '');
+                    setImageUrl(data.image_url || '');
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        if (index) {
+            fetchPostData();
         }
-    }, [initialValues]);
+    }, [index, navigate]);
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -54,11 +77,7 @@ const EditPostForm = ({ onSubmit, initialValues }) => {
             .eq("id", index)
             .select();
 
-        console.log(index, title);
-    };
-
-    const toggleEditMode = async (e) => {
-        setIsEditing(!isEditing);
+        navigate(-1);
     };
 
     const handleDelete = async () => {
@@ -113,10 +132,10 @@ const EditPostForm = ({ onSubmit, initialValues }) => {
             </label>
 
             <div className="flex p-1 mt-5 w-full justify-center items-center text-center transition">
-                <button type="submit" onClick={createPost} className="rounded flex-grow m-2 bg-lime-600 text-white font-bold uppercase hover:bg-lime-700">
+                <button type="submit" onClick={handleEdits} className="rounded flex-grow m-2 bg-lime-600 text-white font-bold uppercase hover:bg-lime-700">
                     Confirm Changes
                 </button>
-                <button type="submit" onClick={createPost} className="rounded flex-grow m-2 bg-red-700 text-neutral-100 font-bold uppercase hover:bg-red-800">
+                <button type="submit" onClick={handleDelete} className="rounded flex-grow m-2 bg-red-700 text-neutral-100 font-bold uppercase hover:bg-red-800">
                     Delete Post
                 </button>
             </div>
